@@ -35,10 +35,14 @@
             args: [--mode, analyze]
     ```
 
-2.  **Install the hook**:
+2.  **Install the hooks**:
 
     ```bash
+    # Install the pre-commit hook
     pre-commit install
+
+    # Install the pre-push hook
+    pre-commit install --hook-type pre-push
     ```
 
 ## 🛠️ Configuration
@@ -62,9 +66,30 @@ You can customize the behavior of the agent by adding a configuration file or pa
 4.  **AI Execution**: The agent receives the diff of the staged files and executes the requested actions using Copilot.
 5.  **Validation**: If the agent finds issues (and `fix` mode is off), the commit is blocked with a detailed report.
 
-## 🤝 Contributing
+## 💻 Development
 
-We welcome contributions! Please see our [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to get involved.
+### Local Testing
+When developing hooks in this repository, use the `local` repo type in your `.pre-commit-config.yaml` to test changes without pushing:
+
+```yaml
+repos:
+  - repo: local
+    hooks:
+      - id: agentic-api-spec-documents
+        name: Check API specs are documented
+        entry: ./venv/bin/check-agentic-api-spec
+        language: script
+        types: [python]
+```
+
+### Running Tests
+This project uses `pytest` for testing. Run the test suite with:
+
+```bash
+poetry run pytest
+```
+
+## 🤝 Contributing
 
 ## 📄 License
 

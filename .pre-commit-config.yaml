@@ -1,5 +1,9 @@
 repos:
-  - repo: https://github.com/PolecatWorks/agentic-pre-commit
-    rev: main # Using main branch
+  - repo: local
     hooks:
       - id: agentic-api-spec-documents
+        name: Check API specs are documented
+        entry: ./venv/bin/check-agentic-api-spec
+        language: script
+        types: [python]
+        stages: [pre-commit, pre-push, manual]
