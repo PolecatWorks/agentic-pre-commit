@@ -86,9 +86,10 @@ Reply only with 'MATCHED' or 'MISMATCHED' followed by a short reason.
         except Exception:
             pass
 
-        # If agent_response is still empty, fallback to full_output (but try to avoid repeating the prompt)
-        if not agent_response.strip():
-            agent_response = full_output.strip()
+        # If agent_response contains the prompt (e.g. Copilot echoing our instructions), 
+        # we need to strip it to avoid false positives/negatives in logic.
+        if "--- GIT DIFF ---" in agent_response:
+            agent_response = agent_response.split("--- GIT DIFF ---")[-1].split("\n", 1)[-1]
 
         # Final decision logic
         clean_response = agent_response.upper()
@@ -100,11 +101,7 @@ Reply only with 'MATCHED' or 'MISMATCHED' followed by a short reason.
         else:
             click.secho("\n❌ README mismatch detected!", fg='red', bold=True)
             if agent_response.strip():
-                # If the reasoning repeating the prompt, try a simple heuristic to show only the end
-                display_response = agent_response.strip()
-                if "--- GIT DIFF ---" in display_response:
-                    display_response = display_response.split("--- GIT DIFF ---")[-1].split("\n", 1)[-1]
-                click.echo(f"🤖 Copilot Analysis:\n{display_response.strip()}")
+                click.echo(f"🤖 Copilot Analysis:\n{agent_response.strip()}")
             elif error_output.strip():
                 click.secho(f"⚠️  CLI Error Output:\n{error_output.strip()}", fg='yellow')
             else:
