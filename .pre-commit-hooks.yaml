@@ -1,8 +1,17 @@
-- id: agentic-api-spec-documents
+- id: agentic-api-spec-check
   name: Check API specs are documented
   description: Reviews code and ensures the API spec reflects the code
   entry: check-agentic-api-spec
+  # args: [ -mode, check]
   language: python
   types: [python]
   stages: [pre-commit, pre-push, manual]
-  # minimum_pre_commit_version: 1.0.0
+
+- id: agentic-api-spec-fix
+  name: Fix undocumented API tags
+  description: Automatically repairs missing API documentation tags
+  entry: check-agentic-api-spec
+  args: [--mode, fix]
+  language: python
+  types: [python]
+  stages: [manual]

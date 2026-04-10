@@ -31,8 +31,7 @@
       - repo: https://github.com/polecatworks/Agentic-pre-commit
         rev: v0.1.0  # Use the latest version
         hooks:
-          - id: agentic-actions
-            args: [--mode, analyze]
+          - id: agentic-api-spec-check
     ```
 
 2.  **Install the hooks**:
@@ -53,10 +52,8 @@ You can customize the behavior of the agent by adding a configuration file or pa
 
 | Mode | Description |
 | :--- | :--- |
-| `analyze` | (Default) Performs a deep scan and reports findings without modifying files. |
-| `fix` | Automatically applies safe refactors and fixes. |
-| `doc` | Focuses on ensuring docstrings and READMEs are updated. |
-| `security` | Runs a specialized security-focused agent. |
+| `check` | (Default) Performs a scan and fails the commit if issues are found. |
+| `fix` | Automatically attempts to fix common issues (e.g. placeholder tags). |
 
 ## 🧩 How It Works
 
