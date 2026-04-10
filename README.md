@@ -32,6 +32,7 @@
         rev: v0.1.0  # Use the latest version
         hooks:
           - id: agentic-api-spec-check
+          - id: agentic-readme-sync
     ```
 
 2.  **Install the hooks**:
@@ -48,13 +49,13 @@
 
 You can customize the behavior of the agent by adding a configuration file or passing arguments in your hook definition.
 
-### Available Modes
+### Available Hooks
 
-| Mode / Hook | Description |
+| Hook ID | Description |
 | :--- | :--- |
-| `agentic-api-spec-check` | (Default) Performs a scan and fails the commit if issues are found. |
-| `agentic-api-spec-fix` | Automatically attempts to fix common issues (e.g. placeholder tags). |
-| `agentic-readme-sync` | Uses AI to ensure the README.md is in sync with the actual code. |
+| **`agentic-api-spec-check`** | **Contextual API Validation.** Scans staged code for undocumented API definitions or mismatched specs. It ensures your implementation stays faithful to your `api-spec.md` (or custom spec file). |
+| **`agentic-api-spec-fix`** | **Automated Documentation Repair.** (Manual mode) Uses AI to automatically patch source files or your API spec to resolve documentation gaps detected during the check phase. |
+| **`agentic-readme-sync`** | **Deep Sync Verification.** The "Smarter" hook. It analyzes your entire Git diff to verify that your `README.md` accurately reflects new features, configuration changes, or architectural shifts introduced in the staged code. |
 
 ## 🧩 How It Works
 
@@ -73,11 +74,18 @@ When developing hooks in this repository, use the `local` repo type in your `.pr
 repos:
   - repo: local
     hooks:
-      - id: agentic-api-spec-documents
+      - id: agentic-api-spec-check
         name: Check API specs are documented
-        entry: ./venv/bin/check-agentic-api-spec
+        entry: ./venv/bin/check-agentic-api-spec --mode check
         language: script
         types: [python]
+
+      - id: agentic-readme-sync
+        name: Check README matches implementation
+        entry: ./venv/bin/check-readme-sync
+        language: script
+        types: [text]
+        files: ^README\.md$
 ```
 
 ### Running Tests
