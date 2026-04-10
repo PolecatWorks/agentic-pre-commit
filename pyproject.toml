@@ -1,0 +1,24 @@
+[project]
+name = "agentic-pre-commit"
+version = "0.1.0"
+description = "Analyse code base and identify any APIs defined and ensure they are documented in the API spec file"
+authors = [
+    {name = "Ben Greene",email = "BenJGreene@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "click (>=8.3.2,<9.0.0)"
+]
+
+[project.scripts]
+check-agentic-api-spec = "pre_commit_hooks.check_agentic_api_spec_documents:main"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "pytest (>=9.0.3,<10.0.0)"
+]
