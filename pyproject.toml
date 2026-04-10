@@ -13,6 +13,7 @@ dependencies = [
 
 [project.scripts]
 check-agentic-api-spec = "agentic_pre_commit_hooks.check_agentic_api_spec_documents:main"
+check-readme-sync = "agentic_pre_commit_hooks.check_readme_sync:main"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

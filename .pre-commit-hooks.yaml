@@ -10,8 +10,16 @@
 - id: agentic-api-spec-fix
   name: Fix undocumented API tags
   description: Automatically repairs missing API documentation tags
-  entry: check-agentic-api-spec
-  args: [--mode, fix]
+  entry: check-agentic-api-spec --mode fix
   language: python
   types: [python]
   stages: [manual]
+
+- id: agentic-readme-sync
+  name: Check README matches implementation
+  description: Uses AI to ensure the README.md is in sync with the actual code
+  entry: check-readme-sync
+  language: python
+  types: [text]
+  files: ^README\.md$
+  stages: [pre-commit, pre-push, manual]

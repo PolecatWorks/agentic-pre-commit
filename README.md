@@ -50,10 +50,11 @@ You can customize the behavior of the agent by adding a configuration file or pa
 
 ### Available Modes
 
-| Mode | Description |
+| Mode / Hook | Description |
 | :--- | :--- |
-| `check` | (Default) Performs a scan and fails the commit if issues are found. |
-| `fix` | Automatically attempts to fix common issues (e.g. placeholder tags). |
+| `agentic-api-spec-check` | (Default) Performs a scan and fails the commit if issues are found. |
+| `agentic-api-spec-fix` | Automatically attempts to fix common issues (e.g. placeholder tags). |
+| `agentic-readme-sync` | Uses AI to ensure the README.md is in sync with the actual code. |
 
 ## 🧩 How It Works
 
