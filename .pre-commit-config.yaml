@@ -1,9 +1,17 @@
 repos:
   - repo: local
     hooks:
-      - id: agentic-api-spec-documents
+      - id: agentic-api-spec-check
         name: Check API specs are documented
-        entry: ./venv/bin/check-agentic-api-spec
+        entry: ./venv/bin/check-agentic-api-spec --mode check
         language: script
         types: [python]
+        stages: [pre-commit, pre-push, manual]
+
+      - id: agentic-readme-sync
+        name: Check README matches implementation
+        entry: ./venv/bin/check-readme-sync
+        language: script
+        types: [text]
+        files: ^README\.md$
         stages: [pre-commit, pre-push, manual]
