@@ -57,6 +57,7 @@ You can customize the behavior of the agent by adding a configuration file or pa
 | **`agentic-api-spec-fix`** | **Automated Documentation Repair.** (Manual mode) Uses AI to automatically patch source files or your API spec to resolve documentation gaps detected during the check phase. |
 | **`agentic-readme-sync`** | **Deep Sync Verification.** The "Smarter" hook. It analyzes your entire Git diff to verify that your `README.md` accurately reflects new features, configuration changes, or architectural shifts introduced in the staged code. |
 
+
 ## 🧩 How It Works
 
 1.  **Stage Changes**: You run `git add .`
