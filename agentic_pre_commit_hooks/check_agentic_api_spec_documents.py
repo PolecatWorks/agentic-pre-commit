@@ -15,11 +15,11 @@ def main(filenames: tuple[str, ...], spec_file: str) -> None:
     click.echo(f"📄 Target spec file: {spec_file}")
 
     success = True
-    
+
     for filename in filenames:
         # TODO: Add logic to call AI Agent for analysis
         click.echo(f"  🔍 Analysing {filename}...")
-        
+
         # Example validation: if filename contains 'FIXME', fail
         # This is just a placeholder for the actual AI agent logic
         try:
@@ -34,7 +34,7 @@ def main(filenames: tuple[str, ...], spec_file: str) -> None:
     if not success:
         click.secho("\n❌ API Spec validation failed. Please update your documentation.", fg='red', bold=True)
         sys.exit(1)
-    
+
     click.secho("\n✅ API Spec validation passed!", fg='green', bold=True)
 
 if __name__ == '__main__':

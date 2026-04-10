@@ -1,5 +1,5 @@
 [project]
-name = "agentic-pre-commit"
+name = "agentic-pre-commit-hooks"
 version = "0.1.0"
 description = "Analyse code base and identify any APIs defined and ensure they are documented in the API spec file"
 authors = [
@@ -12,7 +12,7 @@ dependencies = [
 ]
 
 [project.scripts]
-check-agentic-api-spec = "pre_commit_hooks.check_agentic_api_spec_documents:main"
+check-agentic-api-spec = "agentic_pre_commit_hooks.check_agentic_api_spec_documents:main"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

@@ -1,5 +1,5 @@
 repos:
   - repo: https://github.com/PolecatWorks/agentic-pre-commit
-    rev: v0.1.0 # Use the ref you want to point at
+    rev: main # Using main branch
     hooks:
       - id: agentic-api-spec-documents
